@@ -3,32 +3,10 @@
 
 (require 'cl)
 (setq load-path (append '("/home/oddmunds/elisp") load-path))
+(setq load-path (append '("/home/oddmunds/elisp/dot-emacs") load-path))
 
 (load "trat.el")
 
-
-;;ORG
-
-;; The following lines are always needed.  Choose your own keys.
-     (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-     (global-set-key "\C-cl" 'org-store-link)
-     (global-set-key "\C-ca" 'org-agenda)
-     (global-set-key "\C-cb" 'org-iswitchb)
-
-     (setq org-log-done t)
-
-     (global-font-lock-mode 1)                     ; for all buffers
-     (add-hook 'org-mode-hook 'turn-on-font-lock)  ; Org buffers only
-
-     (transient-mark-mode 1)
-
-
-(require 'org)
-(require 'org-mouse)
-
-;; Gnus
-
-;;(setq gnus-select-method '(nntp "news.start.no"))
 
 
 ;; Timer tail
@@ -41,7 +19,9 @@
  '(canlock-password "0ccf61f2a6abe1f5f79997e47c44e95e011dd5e0")
  '(gnus-visual (quote (summary-highlight group-highlight article-highlight mouse-face summary-menu group-menu article-menu tree-highlight menu highlight browse-menu server-menu page-marker tree-menu binary-menu pick-menu)))
  '(inhibit-startup-screen t)
- '(org-agenda-files nil))
+ '(org-agenda-files (quote ("~/org/logging.org" "~/org/TODO.org" "~/org/prj/winkland.org" "~/org/JOURNAL.org" "~/org/prj/topolov.org" "~/org/prj/starwars.org" "~/org/prj/mumrick.org" "~/org/prj/fashionhouse.org" "~/org/sportsaand.org" "~/org/old.org" "~/org/film.org")))
+ '(org-default-notes-file "~/org/.notes")
+ '(org-hide-leading-stars t))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -50,7 +30,7 @@
  )
 
 
-
+(load "org-init.el")
 
 
 ; Steve Yegge-tips
@@ -94,3 +74,19 @@
 
 ; w3m
   (require 'w3m-load)
+
+; tramp
+
+(require 'tramp)
+(setq tramp-default-method "ssh")
+
+
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
+(when
+    (load
+     (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
