@@ -19,7 +19,7 @@
  '(canlock-password "0ccf61f2a6abe1f5f79997e47c44e95e011dd5e0")
  '(gnus-visual (quote (summary-highlight group-highlight article-highlight mouse-face summary-menu group-menu article-menu tree-highlight menu highlight browse-menu server-menu page-marker tree-menu binary-menu pick-menu)))
  '(inhibit-startup-screen t)
- '(org-agenda-files (quote ("~/org/logging.org" "~/org/TODO.org" "~/org/prj/winkland.org" "~/org/JOURNAL.org" "~/org/prj/topolov.org" "~/org/prj/starwars.org" "~/org/prj/mumrick.org" "~/org/prj/fashionhouse.org" "~/org/sportsaand.org" "~/org/old.org" "~/org/film.org")))
+ '(org-agenda-files (quote ("~/org/LOG.org" "~/org/prj/inf5750.org" "~/org/logging.org" "~/org/TODO.org" "~/org/prj/winkland.org" "~/org/JOURNAL.org" "~/org/prj/topolov.org" "~/org/prj/starwars.org" "~/org/prj/fashionhouse.org" "~/org/sportsaand.org" "~/org/old.org" "~/org/film.org")))
  '(org-default-notes-file "~/org/.notes")
  '(org-hide-leading-stars t))
 (custom-set-faces
@@ -31,7 +31,7 @@
 
 
 (load "org-init.el")
-
+(load "gnus-init.el")
 
 ; Steve Yegge-tips
 
@@ -90,3 +90,19 @@
     (load
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
+
+
+;; yasnippet
+
+(add-to-list 'load-path "~/elisp/yasnippet")
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/elisp/yasnippet/snippets")
+
+(global-set-key [s-tab] 'yas/expand)
+
+
+; chm-view
+
+(require 'chm-view)
+(setq browse-url-browser-function 'w3m-browse-url)
